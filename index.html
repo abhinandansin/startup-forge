@@ -1677,6 +1677,10 @@
             text-shadow: none;
         }
 
+        [data-theme="light"] .hero-title span {
+            background-image: linear-gradient(90deg, #1a2436, #d26417 48%, #0f6ca8);
+        }
+
         .hero-kicker {
             display: inline-flex;
             align-items: center;
@@ -1911,6 +1915,77 @@
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
         }
 
+        .collage-grid {
+            align-items: stretch;
+        }
+
+        .collage-item {
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+            text-align: left;
+            min-height: 210px;
+            padding: 18px;
+        }
+
+        .collage-item-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .collage-item-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .collage-icon {
+            font-size: 1.25rem;
+            line-height: 1;
+        }
+
+        .collage-item-title {
+            font-size: 1.45rem;
+            line-height: 1.2;
+            font-weight: 700;
+            color: #f5f7ff;
+        }
+
+        .collage-item-desc {
+            font-size: 0.96rem;
+            line-height: 1.55;
+            color: rgba(235, 241, 255, 0.85);
+        }
+
+        .collage-points {
+            list-style: none;
+            padding: 0;
+            margin: 4px 0 0 0;
+            display: grid;
+            gap: 6px;
+        }
+
+        .collage-points li {
+            font-size: 0.82rem;
+            letter-spacing: 0.01em;
+            color: rgba(214, 224, 244, 0.92);
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .collage-points li::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-blue));
+            position: absolute;
+            left: 0;
+            top: 0.45rem;
+        }
+
         .section-title::after {
             width: 92px;
             height: 5px;
@@ -1923,6 +1998,74 @@
             border-top: 1px solid rgba(255, 255, 255, 0.12);
             background: rgba(0, 0, 0, 0.28);
             backdrop-filter: blur(8px);
+        }
+
+        /* Light theme readability fix */
+        [data-theme="light"] body {
+            color: #172033;
+            background:
+                radial-gradient(900px 520px at 8% -5%, rgba(255, 145, 77, 0.2), transparent 60%),
+                radial-gradient(760px 460px at 100% 20%, rgba(83, 174, 255, 0.24), transparent 62%),
+                linear-gradient(140deg, #f6f8ff, #edf2ff 55%, #f8fafc);
+            background-attachment: fixed;
+        }
+
+        [data-theme="light"] .section-title,
+        [data-theme="light"] .social-title {
+            color: #d26417;
+        }
+
+        [data-theme="light"] .subtitle,
+        [data-theme="light"] .card p,
+        [data-theme="light"] .content-card p,
+        [data-theme="light"] .challenge-list li,
+        [data-theme="light"] .collage-item,
+        [data-theme="light"] .notice-text {
+            color: #24324a;
+        }
+
+        [data-theme="light"] .card,
+        [data-theme="light"] .sponsor-container,
+        [data-theme="light"] .content-card,
+        [data-theme="light"] .social-section {
+            border-color: rgba(23, 32, 51, 0.12);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(245, 248, 255, 0.86));
+            box-shadow: 0 14px 30px rgba(38, 53, 84, 0.12);
+        }
+
+        [data-theme="light"] .collage-item-title {
+            color: #1c2a42;
+        }
+
+        [data-theme="light"] .collage-item-desc {
+            color: #334766;
+        }
+
+        [data-theme="light"] .collage-points li {
+            color: #3a4e70;
+        }
+
+        [data-theme="light"] .round-tag {
+            color: #93420d;
+            border-color: rgba(210, 100, 23, 0.34);
+            background: rgba(255, 140, 0, 0.13);
+        }
+
+        [data-theme="light"] .notice-bar {
+            background: rgba(255, 255, 255, 0.96);
+            border-color: rgba(23, 32, 51, 0.14);
+            box-shadow: 0 10px 24px rgba(36, 50, 74, 0.16);
+        }
+
+        [data-theme="light"] .notice-close {
+            background: rgba(0, 0, 0, 0.05);
+            color: #172033;
+        }
+
+        [data-theme="light"] footer {
+            color: #24324a;
+            opacity: 0.8;
+            background: rgba(255, 255, 255, 0.68);
         }
 
         @media (max-width: 880px) {
@@ -2126,12 +2269,84 @@
             <p>Whether you're a visionary student with a game-changing idea or a young entrepreneur looking to scale your startup, Startup Forge 1.0 is your arena to compete, learn, and shine. Join us in this exciting journey of innovation and growth!</p>
         </div>
         <div class="collage-grid" style="margin-top: 30px;">
-            <div class="collage-item">🚀 Innovation Hub<br><span style="font-size: 0.8rem;">Building NextGen Ideas</span></div>
-            <div class="collage-item">💡 Idea Incubation<br><span style="font-size: 0.8rem;">From Concept to Reality</span></div>
-            <div class="collage-item">🎯 Mentorship<br><span style="font-size: 0.8rem;">Expert Guidance Available</span></div>
-            <div class="collage-item">🏆 Opportunity<br><span style="font-size: 0.8rem;">Compete & Win</span></div>
-            <div class="collage-item">📈 Growth<br><span style="font-size: 0.8rem;">Accelerate Your Startup</span></div>
-            <div class="collage-item">🌟 Community<br><span style="font-size: 0.8rem;">Connect with Founders</span></div>
+            <div class="collage-item">
+                <div class="collage-item-content">
+                    <div class="collage-item-head">
+                        <span class="collage-icon">🚀</span>
+                        <h3 class="collage-item-title">Innovation Hub</h3>
+                    </div>
+                    <p class="collage-item-desc">Build next-generation solutions around real market problems with a founder-first mindset.</p>
+                    <ul class="collage-points">
+                        <li>Problem validation templates</li>
+                        <li>Idea framing and value proposition</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="collage-item">
+                <div class="collage-item-content">
+                    <div class="collage-item-head">
+                        <span class="collage-icon">💡</span>
+                        <h3 class="collage-item-title">Idea Incubation</h3>
+                    </div>
+                    <p class="collage-item-desc">Turn raw concepts into structured startup blueprints ready for pitching and testing.</p>
+                    <ul class="collage-points">
+                        <li>Business model canvas support</li>
+                        <li>MVP and execution planning</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="collage-item">
+                <div class="collage-item-content">
+                    <div class="collage-item-head">
+                        <span class="collage-icon">🎯</span>
+                        <h3 class="collage-item-title">Mentorship</h3>
+                    </div>
+                    <p class="collage-item-desc">Learn from mentors and experts who have practical startup and industry experience.</p>
+                    <ul class="collage-points">
+                        <li>Pitch feedback loops</li>
+                        <li>Go-to-market guidance</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="collage-item">
+                <div class="collage-item-content">
+                    <div class="collage-item-head">
+                        <span class="collage-icon">🏆</span>
+                        <h3 class="collage-item-title">Opportunity</h3>
+                    </div>
+                    <p class="collage-item-desc">Showcase your idea, gain recognition, and compete for meaningful startup opportunities.</p>
+                    <ul class="collage-points">
+                        <li>Live jury evaluation</li>
+                        <li>Visibility in founder network</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="collage-item">
+                <div class="collage-item-content">
+                    <div class="collage-item-head">
+                        <span class="collage-icon">📈</span>
+                        <h3 class="collage-item-title">Growth</h3>
+                    </div>
+                    <p class="collage-item-desc">Accelerate your startup journey through iterative feedback and execution discipline.</p>
+                    <ul class="collage-points">
+                        <li>Metrics and traction mindset</li>
+                        <li>Scaling roadmap basics</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="collage-item">
+                <div class="collage-item-content">
+                    <div class="collage-item-head">
+                        <span class="collage-icon">🌟</span>
+                        <h3 class="collage-item-title">Community</h3>
+                    </div>
+                    <p class="collage-item-desc">Connect with students, founders, and collaborators who push each other forward.</p>
+                    <ul class="collage-points">
+                        <li>Peer collaboration culture</li>
+                        <li>Long-term alumni connections</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>
