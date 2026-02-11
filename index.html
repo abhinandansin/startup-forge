@@ -1724,6 +1724,9 @@
         .hero-logo-row .hero-logo {
             margin: 0;
             width: min(42vw, 260px);
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            object-position: center;
         }
 
         .hero-title {
@@ -1986,6 +1989,190 @@
             top: 0.45rem;
         }
 
+        .microtek-stats-grid {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(190px, 1fr));
+            gap: 16px;
+        }
+
+        .microtek-stat-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(225, 41, 88, 0.8);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 12px rgba(225, 41, 88, 0.35);
+        }
+
+        .microtek-stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, #fff5f8, #fff);
+            border: 1px solid rgba(225, 41, 88, 0.28);
+            flex-shrink: 0;
+        }
+
+        .microtek-stat-number {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.45rem, 2.6vw, 2rem);
+            font-weight: 700;
+            line-height: 1;
+            color: #565b66;
+        }
+
+        .microtek-stat-label {
+            margin-top: 4px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            color: #585858;
+        }
+
+        .microtek-contact-wrap {
+            margin: 36px 0 26px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .microtek-contact-card {
+            width: min(980px, 100%);
+            border-radius: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.24);
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .microtek-contact-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .microtek-contact-logo {
+            width: 86px;
+            height: 86px;
+            object-fit: contain;
+            border-radius: 14px;
+            background: #fff;
+            padding: 8px;
+            border: 1px solid rgba(210, 100, 23, 0.25);
+            box-shadow: 0 8px 20px rgba(255, 122, 24, 0.18);
+            flex-shrink: 0;
+        }
+
+        .microtek-contact-title {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.05rem, 2.8vw, 1.8rem);
+            line-height: 1.2;
+            margin: 0;
+            color: #f7f9ff;
+        }
+
+        .microtek-contact-sub {
+            margin-top: 6px;
+            font-size: 0.92rem;
+            color: rgba(210, 220, 240, 0.85);
+        }
+
+        .microtek-contact-list {
+            display: grid;
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .microtek-contact-body {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 16px;
+            align-items: start;
+        }
+
+        .microtek-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: rgba(236, 242, 255, 0.95);
+            line-height: 1.45;
+            font-size: 1rem;
+        }
+
+        .microtek-contact-item strong {
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .microtek-contact-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 255, 255, 0.09);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .event-host-card {
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 14px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .event-host-card h4 {
+            margin: 0 0 14px;
+            font-family: 'Sora', sans-serif;
+            font-size: 1.12rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #ffd6b0;
+        }
+
+        .event-host-media {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .event-host-img {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 4px;
+        }
+
+        .event-host-name {
+            margin: 0;
+            font-size: 1.75rem;
+            line-height: 1.2;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .event-host-role {
+            margin-top: 6px;
+            font-size: 1.18rem;
+            color: rgba(232, 240, 255, 0.9);
+            line-height: 1.45;
+        }
+
         .section-title::after {
             width: 92px;
             height: 5px;
@@ -2043,6 +2230,62 @@
 
         [data-theme="light"] .collage-points li {
             color: #3a4e70;
+        }
+
+        [data-theme="light"] .microtek-stat-card {
+            background: #ffffff;
+            border-color: rgba(222, 44, 92, 0.72);
+            box-shadow: 0 5px 14px rgba(188, 46, 86, 0.2);
+        }
+
+        [data-theme="light"] .microtek-contact-card {
+            border-color: rgba(23, 32, 51, 0.14);
+            background: linear-gradient(140deg, rgba(255, 255, 255, 0.95), rgba(246, 250, 255, 0.92));
+            box-shadow: 0 14px 30px rgba(38, 53, 84, 0.13);
+        }
+
+        [data-theme="light"] .microtek-contact-title {
+            color: #202c41;
+        }
+
+        [data-theme="light"] .microtek-contact-sub {
+            color: #4b5e7f;
+        }
+
+        [data-theme="light"] .microtek-contact-item {
+            color: #2d405f;
+        }
+
+        [data-theme="light"] .microtek-contact-item strong {
+            color: #1b2b44;
+        }
+
+        [data-theme="light"] .microtek-contact-icon {
+            border-color: rgba(32, 44, 65, 0.2);
+            background: rgba(32, 44, 65, 0.06);
+            color: #1b2b44;
+        }
+
+        [data-theme="light"] .event-host-card {
+            border-color: rgba(32, 44, 65, 0.2);
+            background: rgba(32, 44, 65, 0.04);
+        }
+
+        [data-theme="light"] .event-host-card h4 {
+            color: #aa4e18;
+        }
+
+        [data-theme="light"] .event-host-name {
+            color: #162743;
+        }
+
+        [data-theme="light"] .event-host-role {
+            color: #314a70;
+        }
+
+        [data-theme="light"] .event-host-img {
+            border-color: rgba(32, 44, 65, 0.22);
+            background: rgba(32, 44, 65, 0.05);
         }
 
         [data-theme="light"] .round-tag {
@@ -2113,6 +2356,46 @@
 
             .hero-logo-row .hero-logo {
                 width: min(44vw, 190px);
+                aspect-ratio: 1 / 1;
+            }
+
+            .microtek-stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .microtek-contact-card {
+                padding: 18px 14px;
+            }
+
+            .microtek-contact-head {
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .microtek-contact-logo {
+                width: 72px;
+                height: 72px;
+            }
+
+            .microtek-contact-item {
+                font-size: 0.96rem;
+            }
+
+            .microtek-contact-body {
+                grid-template-columns: 1fr;
+            }
+
+            .event-host-img {
+                width: 88px;
+                height: 88px;
+            }
+
+            .event-host-name {
+                font-size: 1.3rem;
+            }
+
+            .event-host-role {
+                font-size: 1rem;
             }
         }
 
@@ -2254,6 +2537,36 @@
                 <p>Microtek Group of Institutions was established in year 1999-2000 with admission to shoulder the noble responsibility of producing young and dynamic professionals in the field of Computer & Management Science, Bio Technology, Paramedical Sciences, Mass Communication and Journalism etc, ready to face challenges and demands of the highly changing corporate and industries.</p>
                 <p>We, Microtek Group of Institutions, focus on nourishing students energy and aptitude to make them a complete winner. Students who are moving towards a career of immense pride, professionalism and prudence! Our objective is to sharpen their edges by enhancing their skills to touch the highest niche in their respective field to excel in their way of life!</p>
             </div>
+            <div class="microtek-stats-grid">
+                <div class="microtek-stat-card">
+                    <div class="microtek-stat-icon">🎓</div>
+                    <div>
+                        <div class="microtek-stat-number">6265</div>
+                        <div class="microtek-stat-label">Happy Students</div>
+                    </div>
+                </div>
+                <div class="microtek-stat-card">
+                    <div class="microtek-stat-icon">🏅</div>
+                    <div>
+                        <div class="microtek-stat-number">25</div>
+                        <div class="microtek-stat-label">Years Of Experience</div>
+                    </div>
+                </div>
+                <div class="microtek-stat-card">
+                    <div class="microtek-stat-icon">🎓</div>
+                    <div>
+                        <div class="microtek-stat-number">16000</div>
+                        <div class="microtek-stat-label">Alumni</div>
+                    </div>
+                </div>
+                <div class="microtek-stat-card">
+                    <div class="microtek-stat-icon">🎉</div>
+                    <div>
+                        <div class="microtek-stat-number">110</div>
+                        <div class="microtek-stat-label">Awards Winning</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     <div class="collage-section">
@@ -2354,18 +2667,43 @@
 <div class="container"><div class="section-divider"></div></div>
 
 <div class="container">
-    <div class="social-section">
-        <h2 class="social-title">FOLLOW US</h2>
-        <div class="social-container">
-            <a href="https://www.instagram.com/forge_startup1.0" target="_blank" rel="noopener noreferrer" class="social-link instagram" title="Instagram" aria-label="Instagram">
-                <img src="8.jpeg" alt="Instagram" class="social-icon">
-            </a>
-            <a href="https://www.facebook.com/share/1GqkVUjN6K/" target="_blank" rel="noopener noreferrer" class="social-link facebook" title="Facebook" aria-label="Facebook">
-                <img src="9.jpeg" alt="Facebook" class="social-icon">
-            </a>
-            <a href="https://www.youtube.com/@startupforge1.0" target="_blank" rel="noopener noreferrer" class="social-link youtube" title="YouTube" aria-label="YouTube">
-                <img src="10.jpeg" alt="YouTube" class="social-icon">
-            </a>
+    <div class="microtek-contact-wrap">
+        <div class="microtek-contact-card">
+            <div class="microtek-contact-head">
+                <img src="5.jpeg" alt="Microtek Group Logo" class="microtek-contact-logo">
+                <div>
+                    <h3 class="microtek-contact-title">Microtek Group Of Institutions</h3>
+                    <div class="microtek-contact-sub">Jaunpur - Varanasi</div>
+                </div>
+            </div>
+
+            <div class="microtek-contact-body">
+                <div class="microtek-contact-list">
+                    <div class="microtek-contact-item">
+                        <span class="microtek-contact-icon">📍</span>
+                        <div><strong>Address:</strong> B-36/9-C Ground Floor, Sankat Mochan Rd, Tulsi Manas Mandir Colony, Naria, Varanasi, Uttar Pradesh 221005</div>
+                    </div>
+                    <div class="microtek-contact-item">
+                        <span class="microtek-contact-icon">📞</span>
+                        <div><strong>Phone:</strong> 9451123331</div>
+                    </div>
+                    <div class="microtek-contact-item">
+                        <span class="microtek-contact-icon">✉️</span>
+                        <div><strong>Email:</strong> cs.sm@microtek.ac.in</div>
+                    </div>
+                </div>
+
+                <aside class="event-host-card">
+                    <h4>Event Coordinator</h4>
+                    <div class="event-host-media">
+                        <img src="6.jpeg" alt="Neelotpal Dey" class="event-host-img">
+                        <div>
+                            <p class="event-host-name">Neelotpal Dey</p>
+                            <p class="event-host-role">HOD CS and TnP<br>Microtek College of Management and Technology, Sankat Mochan Campus</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
         </div>
     </div>
 </div>
@@ -2398,10 +2736,6 @@
         <a href="https://forms.gle/sAU7XEadHho4wsWS6" target="_blank" rel="noopener noreferrer" class="notice-link">Register now</a>
         <button class="notice-close" aria-label="Dismiss">×</button>
     </div>
-</div>
-
-<div class="bottom-image-section">
-    <img src="3.jpeg" alt="Featured Image" class="bottom-full-image">
 </div>
 
 <script>
