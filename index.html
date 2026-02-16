@@ -191,6 +191,12 @@
             align-items: center;
             gap: 8px;
         }
+        .brand-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
         .brand-icon {
             height: 26px;
             width: auto;
@@ -1057,19 +1063,62 @@
 
         /* Social Media Section */
         .social-section {
-            margin: 80px 0 40px;
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            margin: 80px auto 40px;
+            max-width: 780px;
+            padding: 34px 24px 30px;
+            border-radius: 28px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             animation: slideInUp 0.8s ease forwards;
+        }
+
+        .social-section::before,
+        .social-section::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(26px);
+            opacity: 0.45;
+            pointer-events: none;
+        }
+
+        .social-section::before {
+            width: 210px;
+            height: 210px;
+            background: rgba(255, 140, 0, 0.28);
+            top: -90px;
+            left: -75px;
+            animation: heroOrbDrift 6s ease-in-out infinite alternate;
+        }
+
+        .social-section::after {
+            width: 190px;
+            height: 190px;
+            background: rgba(0, 212, 255, 0.26);
+            bottom: -80px;
+            right: -60px;
+            animation: heroOrbDrift 7s ease-in-out infinite alternate-reverse;
         }
 
         .social-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
+            letter-spacing: 0.05em;
             color: var(--secondary);
-            margin-bottom: 40px;
+            margin-bottom: 12px;
             position: relative;
             display: inline-block;
-            width: 100%;
+            width: auto;
+            background: linear-gradient(90deg, #ffe55c, #ffc43d 40%, #9ff8ff 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             animation: slideInDown 0.8s ease forwards;
         }
 
@@ -1085,75 +1134,104 @@
             animation-fill-mode: both;
         }
 
+        .social-subtitle {
+            margin: 0 0 26px;
+            font-size: 0.96rem;
+            color: var(--text-muted);
+            letter-spacing: 0.01em;
+            max-width: 520px;
+        }
+
         .social-container {
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 40px;
             flex-wrap: wrap;
-            padding: 30px;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            transition: 0.4s;
+            width: min(620px, 100%);
+            margin: 0 auto;
+            padding: 30px 26px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 24px;
+            box-shadow: inset 0 0 30px rgba(255,255,255,0.04), 0 12px 30px rgba(0,0,0,0.2);
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
             animation: fadeInScale 0.8s ease forwards 0.2s;
             animation-fill-mode: both;
         }
 
         .social-container:hover {
             border-color: var(--primary);
-            box-shadow: 0 10px 40px rgba(255,140,0,0.15);
+            transform: translateY(-4px);
+            box-shadow: inset 0 0 36px rgba(255,255,255,0.05), 0 18px 38px rgba(255,140,0,0.2);
         }
 
         .social-link {
-            width: 80px;
-            height: 80px;
+            width: 86px;
+            height: 86px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, rgba(255,140,0,0.2), rgba(0,212,255,0.2));
-            border: 2px solid var(--primary);
+            background: linear-gradient(135deg, rgba(255,140,0,0.16), rgba(0,212,255,0.16));
+            border: 2px solid rgba(0,255,213,0.8);
             border-radius: 50%;
             text-decoration: none;
             font-size: 2rem;
-            transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease;
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(255,140,0,0.2), inset 0 0 10px rgba(255,255,255,0.1);
+            box-shadow: 0 10px 18px rgba(0,0,0,0.24), inset 0 0 10px rgba(255,255,255,0.12);
+            animation: socialFloat 3.4s ease-in-out infinite;
         }
 
         .social-link::before {
             content: '';
             position: absolute;
-            top: 50%;
+            inset: -40%;
+            background: linear-gradient(120deg, transparent 15%, rgba(255,255,255,0.24) 50%, transparent 85%);
+            transform: translateX(-120%) rotate(18deg);
+            transition: transform 0.5s ease;
+            pointer-events: none;
+        }
+
+        .social-link::after {
+            content: attr(data-label);
+            position: absolute;
             left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(255,140,0,0.4) 0%, transparent 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.4s, height 0.4s;
-            z-index: -1;
+            bottom: -24px;
+            transform: translateX(-50%);
+            font-family: 'Sora', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            opacity: 0;
+            transition: opacity 0.25s ease, bottom 0.25s ease;
         }
 
         .social-link:hover {
-            transform: scale(1.25) rotateZ(15deg);
+            transform: translateY(-8px) scale(1.09);
             border-color: var(--accent);
             box-shadow: 
-                0 0 40px rgba(255,140,0,0.5),
-                0 0 80px rgba(0,212,255,0.4),
+                0 0 30px rgba(255,140,0,0.35),
+                0 0 54px rgba(0,212,255,0.28),
                 inset 0 0 15px rgba(255,255,255,0.2);
         }
 
         .social-link:hover::before {
-            width: 200px;
-            height: 200px;
+            transform: translateX(120%) rotate(18deg);
+        }
+
+        .social-link:hover::after {
+            opacity: 1;
+            bottom: -20px;
         }
 
         .social-link.instagram {
-            animation: slideInUp 0.6s ease forwards 0.3s;
+            animation-delay: 0.12s;
         }
 
         .social-link.instagram:hover {
@@ -1162,7 +1240,7 @@
         }
 
         .social-link.facebook {
-            animation: slideInUp 0.6s ease forwards 0.4s;
+            animation-delay: 0s;
         }
 
         .social-link.facebook:hover {
@@ -1172,14 +1250,13 @@
         }
 
         .social-link.youtube {
-            animation: slideInUp 0.6s ease forwards 0.5s;
-            opacity: 0.6;
-            cursor: not-allowed;
+            animation-delay: 0.24s;
         }
 
         .social-link.youtube:hover {
-            opacity: 0.8;
-            transform: scale(1.15);
+            background: linear-gradient(135deg, #FF0000, #CC0000);
+            color: white;
+            border-color: #FF0000;
         }
 
         .social-link.whatsapp {
@@ -1193,52 +1270,64 @@
         }
 
         .social-icon {
-            width: 100%;
-            height: 100%;
+            width: 64%;
+            height: 64%;
             object-fit: contain;
-            padding: 8px;
-            filter: brightness(0.95);
-            transition: 0.3s;
+            border-radius: 16px;
+            filter: brightness(0.98) saturate(1.04);
+            transition: transform 0.3s ease, filter 0.3s ease;
         }
 
         .social-link:hover .social-icon {
-            filter: brightness(1.1) drop-shadow(0 0 8px rgba(255,140,0,0.5));
+            transform: scale(1.06);
+            filter: brightness(1.08) saturate(1.12) drop-shadow(0 0 8px rgba(255,140,0,0.4));
         }
 
         [data-theme="light"] .social-container {
-            border-color: var(--border-color);
+            border-color: rgba(29, 47, 73, 0.14);
+            background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(246,249,255,0.86));
         }
 
         [data-theme="light"] .social-container:hover {
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: inset 0 0 30px rgba(255,255,255,0.24), 0 16px 32px rgba(38,53,84,0.16);
         }
 
         [data-theme="light"] .social-link {
-            border-color: #ff8c00;
-            box-shadow: 0 0 15px rgba(255,140,0,0.2), inset 0 0 10px rgba(255,255,255,0.2);
+            border-color: #1da8b8;
+            box-shadow: 0 8px 16px rgba(38,53,84,0.18), inset 0 0 10px rgba(255,255,255,0.35);
+            background: linear-gradient(135deg, rgba(29,168,184,0.12), rgba(255,153,92,0.14));
         }
 
         [data-theme="light"] .social-link:hover {
             box-shadow: 
-                0 0 40px rgba(255,140,0,0.4),
-                0 0 80px rgba(0,0,0,0.15),
+                0 0 30px rgba(255,140,0,0.28),
+                0 0 62px rgba(0,0,0,0.14),
                 inset 0 0 15px rgba(255,255,255,0.3);
         }
 
         @media (max-width: 768px) {
+            .social-section {
+                padding: 24px 16px 22px;
+            }
+
             .social-container {
                 gap: 20px;
-                padding: 20px;
+                padding: 20px 14px;
             }
 
             .social-link {
-                width: 70px;
-                height: 70px;
+                width: 74px;
+                height: 74px;
                 font-size: 1.5rem;
             }
 
             .social-title {
                 font-size: 1.4rem;
+            }
+
+            .social-subtitle {
+                font-size: 0.88rem;
+                margin-bottom: 20px;
             }
         }
 
@@ -1352,6 +1441,15 @@
             to {
                 opacity: 1;
                 transform: scale(1);
+            }
+        }
+
+        @keyframes socialFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
             }
         }
 
@@ -2448,9 +2546,6 @@
         <div class="logo-group">
             <img src="1.jpeg" alt="Startup Forge Logo" class="logo-img">
             <span class="logo">STARTUP FORGE</span>
-            <div class="brand-icons">
-                <img src="4.jpeg" alt="Logo 4" class="brand-icon">
-            </div>
         </div>
         <div class="nav-links">
             <a href="#challenge">Challenge</a>
@@ -2709,6 +2804,22 @@
 </div>
 
 <div class="container"><div class="section-divider"></div></div>
+
+<div class="container social-section">
+    <h2 class="social-title">FOLLOW US</h2>
+    <p class="social-subtitle">Stay connected for event updates, highlights, and announcements.</p>
+    <div class="social-container">
+        <a href="https://www.facebook.com/share/1GqkVUjN6K/" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Follow Startup Forge on Facebook" data-label="Facebook">
+            <img src="9.jpeg" alt="Facebook" class="social-icon">
+        </a>
+        <a href="https://www.instagram.com/forge_startup1.0" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Follow Startup Forge on Instagram" data-label="Instagram">
+            <img src="8.jpeg" alt="Instagram" class="social-icon">
+        </a>
+        <a href="https://www.youtube.com/@startupforge1.0" target="_blank" rel="noopener noreferrer" class="social-link youtube" aria-label="Subscribe to Startup Forge on YouTube" data-label="YouTube">
+            <img src="10.jpeg" alt="YouTube" class="social-icon">
+        </a>
+    </div>
+</div>
 
 <footer>
     MICROTEK GROUP OF INSTITUTIONS | JAUNPUR - VARANASI
