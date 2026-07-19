@@ -354,6 +354,43 @@
         }
         [data-theme="light"] .bg-glow { background: none; }
 
+        /* Animated particle field */
+        .particle-field {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,180,80,0.55), transparent 70%);
+            filter: blur(1px);
+            animation: particleRise linear infinite;
+        }
+        [data-theme="light"] .particle {
+            background: radial-gradient(circle, rgba(255,140,0,0.35), transparent 70%);
+        }
+        @keyframes particleRise {
+            0% { transform: translateY(110vh) translateX(0) scale(0.6); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) translateX(30px) scale(1.1); opacity: 0; }
+        }
+
+        /* Scroll reveal utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .ticker-bar {
             background: linear-gradient(90deg, var(--primary), #ff4500);
             color: #000;
@@ -363,6 +400,22 @@
             text-transform: uppercase;
             overflow: hidden;
             border-bottom: 1px solid rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .ticker-bar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+            transform: translateX(-100%);
+            animation: tickerSheen 3.2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes tickerSheen {
+            0% { transform: translateX(-100%); }
+            50%, 100% { transform: translateX(100%); }
         }
 
         .ticker {
@@ -402,6 +455,12 @@
             filter: blur(40px);
             z-index: 0;
             pointer-events: none;
+            animation: heroGlowPulse 5s ease-in-out infinite;
+        }
+
+        @keyframes heroGlowPulse {
+            0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.15); }
         }
 
         header > * {
@@ -489,9 +548,9 @@
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.015);
             border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.2);
+            box-shadow: 0 14px 34px rgba(255, 140, 0, 0.24);
         }
 
         .card h3 {
@@ -1531,6 +1590,35 @@
             animation: shimmer 1s linear;
         }
 
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 1.5px;
+            background: linear-gradient(120deg, transparent, var(--primary), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            /* standardized property for browsers that support mask-composite */
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            background-size: 200% 200%;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+            animation: borderChase 2.4s linear infinite;
+        }
+
+        @keyframes borderChase {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
         .collage-item {
             animation: slideInUp 0.6s ease-out forwards;
         }
@@ -1792,7 +1880,7 @@
             color: #fff;
             background: linear-gradient(90deg, var(--brand-orange), #ff9248);
             box-shadow: 0 8px 18px rgba(255, 122, 24, 0.35);
-            animation: heroRevealUp 0.7s ease both;
+            animation: heroRevealUp 0.7s ease both, kickerPulse 2.4s ease-in-out 1.2s infinite;
         }
 
         .hero-kicker::before {
@@ -1802,6 +1890,17 @@
             border-radius: 50%;
             background: #fff;
             opacity: 0.92;
+            animation: dotBlink 1.6s ease-in-out infinite;
+        }
+
+        @keyframes dotBlink {
+            0%, 100% { opacity: 0.35; transform: scale(0.85); }
+            50% { opacity: 1; transform: scale(1.15); }
+        }
+
+        @keyframes kickerPulse {
+            0%, 100% { box-shadow: 0 8px 18px rgba(255, 122, 24, 0.35); }
+            50% { box-shadow: 0 8px 26px rgba(255, 122, 24, 0.55); }
         }
 
         .hero-logo {
@@ -1921,6 +2020,23 @@
             text-decoration: none;
             color: #fff;
             background: rgba(255, 255, 255, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-secondary::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.14);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-secondary:hover::before {
+            transform: scaleX(1);
         }
 
         [data-theme="light"] .btn-secondary {
@@ -2045,6 +2161,14 @@
         .collage-icon {
             font-size: 1.25rem;
             line-height: 1;
+            display: inline-block;
+            animation: iconSway 3.5s ease-in-out infinite;
+        }
+
+        @keyframes iconSway {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-8deg); }
+            75% { transform: rotate(8deg); }
         }
 
         .collage-item-title {
@@ -2103,6 +2227,12 @@
             border: 1px solid rgba(225, 41, 88, 0.8);
             background: rgba(255, 255, 255, 0.9);
             box-shadow: 0 4px 12px rgba(225, 41, 88, 0.35);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .microtek-stat-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 12px 26px rgba(225, 41, 88, 0.4);
         }
 
         .microtek-stat-icon {
@@ -2115,6 +2245,11 @@
             background: linear-gradient(135deg, #fff5f8, #fff);
             border: 1px solid rgba(225, 41, 88, 0.28);
             flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .microtek-stat-card:hover .microtek-stat-icon {
+            transform: scale(1.15) rotate(-6deg);
         }
 
         .microtek-stat-number {
@@ -2203,6 +2338,11 @@
             color: rgba(236, 242, 255, 0.95);
             line-height: 1.45;
             font-size: 1rem;
+            transition: transform 0.25s ease;
+        }
+
+        .microtek-contact-item:hover {
+            transform: translateX(6px);
         }
 
         .microtek-contact-item strong {
@@ -2220,6 +2360,12 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             font-size: 1rem;
             flex-shrink: 0;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .microtek-contact-item:hover .microtek-contact-icon {
+            transform: scale(1.15);
+            background: rgba(255, 122, 24, 0.25);
         }
 
         .event-host-card {
@@ -2254,6 +2400,11 @@
             flex-shrink: 0;
             background: rgba(255, 255, 255, 0.08);
             padding: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .event-host-media:hover .event-host-img {
+            transform: scale(1.06) rotate(-2deg);
         }
 
         .event-host-name {
@@ -2534,12 +2685,23 @@
             0% { transform: translate(0, 0); }
             100% { transform: translate(14px, -10px); }
         }
+
+        /* Respect reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+        }
     </style>
 </head>
 
 <body>
 
 <div class="bg-glow"></div>
+<div class="particle-field" id="particle-field"></div>
 
 <nav class="nav">
     <div class="container nav-inner">
@@ -2557,7 +2719,7 @@
 
 <div class="ticker-bar">
     <div class="ticker">
-        <span>🔥 STARTUP FORGE 1.0 - LAST DATE FOR IDEA SUBMISSION: 23 MARCH</span>
+        <span>🔥 STARTUP CO-Founder 'Abhinandan singh' - LAST DATE FOR IDEA SUBMISSION: 23 MARCH</span>
         <span>HEAT ROUND: 26 MARCH</span>
         <span>HAMMER ROUND: 27 MARCH</span>
         <span>FORGE ROUND: 28 MARCH</span>
@@ -2575,7 +2737,7 @@
             <img src="12.png" alt="Startup Forge Visual" class="hero-logo">
             <img src="1.jpeg" alt="Forge Logo" class="hero-logo">
         </div>
-        <h1 class="hero-title"><span>STARTUP FORGE 1.0</span></h1>
+        <h1 class="hero-title"><span>STARTUP FORGE CO-FOUNDER 'ABHINANDAN SINGH'</span></h1>
         <p class="subtitle">The Startup Arena for NextGen Founders. Build, pitch, and test your idea in a fast-paced founder challenge.</p>
         <div class="hero-cta-row">
             <a href="https://forms.gle/sAU7XEadHho4wsWS6" target="_blank" rel="noopener noreferrer" class="btn-register">Register Now</a>
@@ -2591,23 +2753,23 @@
 
  
 
-<h2 id="challenge" class="section-title">THE CHALLENGE</h2>
+<h2 id="challenge" class="section-title reveal">THE CHALLENGE</h2>
 
 <div class="container">
     <div class="rounds-grid">
-        <div class="card">
+        <div class="card reveal">
             <span class="round-tag">26 March</span>
             <h3>🔥 HEAT ROUND</h3>
             <p>Idea screening focused on originality, feasibility, and market relevance.</p>
         </div>
 
-        <div class="card">
+        <div class="card reveal">
             <span class="round-tag">27 March</span>
             <h3>🔨 HAMMER ROUND</h3>
             <p>Structured PPT pitching followed by a sharp Q&A with evaluators.</p>
         </div>
 
-        <div class="card">
+        <div class="card reveal">
             <span class="round-tag">28 March</span>
             <h3>⚔️ FORGE ROUND</h3>
             <p>Real-time business challenge and strategic pivot execution under pressure.</p>
@@ -2616,7 +2778,7 @@
 </div>
 
 <div class="container">
-    <div class="sponsor-container">
+    <div class="sponsor-container reveal">
         <h2 class="section-title">PARTNERS</h2>
         <div class="sponsor-grid">
             <div class="sponsor-box">Partner</div>
@@ -2626,7 +2788,7 @@
         </div>
     </div>
 
-    <div class="collage-section">
+    <div class="collage-section reveal">
         <h2 class="section-title">ABOUT MICROTEK GROUP</h2>
             <div class="content-card">
                 <p>Microtek Group of Institutions was established in year 1999-2000 with admission to shoulder the noble responsibility of producing young and dynamic professionals in the field of Computer & Management Science, Bio Technology, Paramedical Sciences, Mass Communication and Journalism etc, ready to face challenges and demands of the highly changing corporate and industries.</p>
@@ -2636,35 +2798,35 @@
                 <div class="microtek-stat-card">
                     <div class="microtek-stat-icon">🎓</div>
                     <div>
-                        <div class="microtek-stat-number">6265</div>
+                        <div class="microtek-stat-number" data-count="6265">0</div>
                         <div class="microtek-stat-label">Happy Students</div>
                     </div>
                 </div>
                 <div class="microtek-stat-card">
                     <div class="microtek-stat-icon">🏅</div>
                     <div>
-                        <div class="microtek-stat-number">25</div>
+                        <div class="microtek-stat-number" data-count="25">0</div>
                         <div class="microtek-stat-label">Years Of Experience</div>
                     </div>
                 </div>
                 <div class="microtek-stat-card">
                     <div class="microtek-stat-icon">🎓</div>
                     <div>
-                        <div class="microtek-stat-number">16000</div>
+                        <div class="microtek-stat-number" data-count="16000">0</div>
                         <div class="microtek-stat-label">Alumni</div>
                     </div>
                 </div>
                 <div class="microtek-stat-card">
                     <div class="microtek-stat-icon">🎉</div>
                     <div>
-                        <div class="microtek-stat-number">110</div>
+                        <div class="microtek-stat-number" data-count="110">0</div>
                         <div class="microtek-stat-label">Awards Winning</div>
                     </div>
                 </div>
             </div>
         </div>
 
-    <div class="collage-section">
+    <div class="collage-section reveal">
         <h2 class="section-title">ABOUT STARTUP FORGE</h2>
         <div class="content-card">
             <p><strong>Startup Forge 1.0</strong> is an innovative entrepreneurial competition designed to ignite the founder spirit in the next generation. It's a dynamic platform where aspiring entrepreneurs pitch their groundbreaking ideas, receive mentor feedback, and compete in a series of challenging rounds.</p>
@@ -2762,7 +2924,7 @@
 <div class="container"><div class="section-divider"></div></div>
 
 <div class="container">
-    <div class="microtek-contact-wrap">
+    <div class="microtek-contact-wrap reveal">
         <div class="microtek-contact-card">
             <div class="microtek-contact-head">
                 <img src="5.jpeg" alt="Microtek Group Logo" class="microtek-contact-logo">
@@ -2805,7 +2967,7 @@
 
 <div class="container"><div class="section-divider"></div></div>
 
-<div class="container social-section">
+<div class="container social-section reveal">
     <h2 class="social-title">FOLLOW US</h2>
     <p class="social-subtitle">Stay connected for event updates, highlights, and announcements.</p>
     <div class="social-container">
@@ -2899,6 +3061,77 @@
                 }
                 syncToggleIcon();
             });
+        }
+
+        // Floating particles (respects reduced-motion)
+        var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var field = document.getElementById('particle-field');
+        if (field && !prefersReducedMotion) {
+            var count = window.innerWidth < 600 ? 12 : 24;
+            for (var i = 0; i < count; i++) {
+                var p = document.createElement('div');
+                p.className = 'particle';
+                var size = 3 + Math.random() * 7;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.animationDuration = (10 + Math.random() * 14) + 's';
+                p.style.animationDelay = (Math.random() * 14) + 's';
+                field.appendChild(p);
+            }
+        }
+
+        // Scroll-reveal animation using IntersectionObserver
+        var revealEls = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            revealEls.forEach(function (el) { io.observe(el); });
+        } else {
+            revealEls.forEach(function (el) { el.classList.add('in-view'); });
+        }
+
+        // Animated stat counters
+        var counters = document.querySelectorAll('.microtek-stat-number[data-count]');
+        function animateCounter(el) {
+            var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+            var duration = 1400;
+            var startTime = null;
+            function step(ts) {
+                if (!startTime) startTime = ts;
+                var progress = Math.min((ts - startTime) / duration, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.floor(eased * target).toLocaleString();
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    el.textContent = target.toLocaleString();
+                }
+            }
+            requestAnimationFrame(step);
+        }
+        if (counters.length) {
+            if ('IntersectionObserver' in window && !prefersReducedMotion) {
+                var counterIo = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            animateCounter(entry.target);
+                            counterIo.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                counters.forEach(function (el) { counterIo.observe(el); });
+            } else {
+                counters.forEach(function (el) {
+                    el.textContent = parseInt(el.getAttribute('data-count'), 10).toLocaleString();
+                });
+            }
         }
     });
 </script>
